@@ -7,9 +7,40 @@
 
 ## Usage
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+GNTextFieldsCollectionManager handles textFields automaticaly, so the basic setup could be this:
 
-## Requirements
+```
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.textFieldManager = [[GNTextFieldsCollectionManager alloc] initWithView:self.view];
+}
+```
+
+Usualy You will need to get handle last field Return key. Delegate can be used for this:
+
+```
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.textFieldManager = [[GNTextFieldsCollectionManager alloc] initWithView:self.view];
+    self.textFieldManager.delegate = self; // GNTextFieldsCollectionManagerDelegate protocol
+}
+
+-(void)textFieldsCollectionManager:(GNTextFieldsCollectionManager *)manager lastTextFieldShouldReturn:(UITextField *)textField;{
+    // ...
+}
+```
+
+### Note
+
+Important thing is that the manager assigns itself as delegate of all used textFields.
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Installation
 
