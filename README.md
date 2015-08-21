@@ -51,10 +51,6 @@ it, simply add the following line to your Podfile:
 pod "GNTextFieldsCollectionManager"
 ```
 
-## Author
-
-Jakub Knejzlik, jakub.knejzlik@gmail.com
-
 ## License
 
 GNTextFieldsCollectionManager is available under the MIT license. See the LICENSE file for more info.
