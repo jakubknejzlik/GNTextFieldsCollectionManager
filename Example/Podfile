@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'GNTextFieldsCollectionManager_Example', :exclusive => true do
+  pod "GNTextFieldsCollectionManager", :path => "../"
+end
+
+target 'GNTextFieldsCollectionManager_Tests', :exclusive => true do
+  pod "GNTextFieldsCollectionManager", :path => "../"
+
+  
+end
