@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Funtasty Digital s.r.o. All rights reserved.
 //
 
-#import "GNTextFieldsManager.h"
+#import "GNTextFieldsCollectionManager.h"
 
 
-@interface GNTextFieldsManager () <UITextFieldDelegate>
+@interface GNTextFieldsCollectionManager () <UITextFieldDelegate>
 @end
 
-@implementation GNTextFieldsManager
+@implementation GNTextFieldsCollectionManager
 
 -(id)initWithView:(UIView *)view{
-    return [self initWithTextFields:[GNTextFieldsManager textFieldsFromView:view]];
+    return [self initWithTextFields:[GNTextFieldsCollectionManager textFieldsFromView:view]];
 }
 
 -(id)initWithTextFields:(NSArray *)textFields{
@@ -35,6 +35,8 @@
         }
         tf.delegate = self;
     }
+    UITextField *lastTextField = [self.textFields lastObject];
+    self.lastFieldReturnKeyType = lastTextField.returnKeyType;
 }
 
 -(void)selectFirstResponder{
@@ -47,7 +49,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField == [self.textFields lastObject]) {
-        [self.delegate textFieldsManager:self lastTextFieldShouldReturn:textField];
+        [self.delegate textFieldsCollectionManager:self lastTextFieldShouldReturn:textField];
     }else{
         NSUInteger index = [self.textFields indexOfObject:textField];
         if(index != NSNotFound){

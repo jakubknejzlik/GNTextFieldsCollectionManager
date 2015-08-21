@@ -8,22 +8,36 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol GNTextFieldsManagerDelegate;
+@protocol GNTextFieldsCollectionManagerDelegate;
 
-@interface GNTextFieldsManager : NSObject
+@interface GNTextFieldsCollectionManager : NSObject
 @property (nonatomic,readonly) NSArray *textFields;
-@property (nonatomic,assign) id<GNTextFieldsManagerDelegate> delegate;
+@property (nonatomic,assign) id<GNTextFieldsCollectionManagerDelegate> delegate;
 
+/**
+ Return key type of last field. This value defaults to last return key type of last textField in collection.
+ */
+@property UIReturnKeyType lastFieldReturnKeyType;
+
+
+/**
+ Populates all textfields in view, sort them by tag and call initWithTextFields:
+ */
 -(id)initWithView:(UIView *)view;
+
 -(id)initWithTextFields:(NSArray *)textFields;
 
+
+/**
+ First textField becomes first responder
+ */
 -(void)selectFirstResponder;
 
 @end
 
 
-@protocol GNTextFieldsManagerDelegate <UITextFieldDelegate>
+@protocol GNTextFieldsCollectionManagerDelegate <UITextFieldDelegate>
 
--(void)textFieldsManager:(GNTextFieldsManager *)manager lastTextFieldShouldReturn:(UITextField *)textField;
+-(void)textFieldsCollectionManager:(GNTextFieldsCollectionManager *)manager lastTextFieldShouldReturn:(UITextField *)textField;
 
 @end

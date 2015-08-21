@@ -8,8 +8,10 @@
 
 #import "GNViewController.h"
 
-@interface GNViewController ()
+#import "GNTextFieldsCollectionManager.h"
 
+@interface GNViewController () <GNTextFieldsCollectionManagerDelegate>
+@property (strong, nonatomic) GNTextFieldsCollectionManager *textFieldManager;
 @end
 
 @implementation GNViewController
@@ -17,13 +19,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    self.textFieldManager = [[GNTextFieldsCollectionManager alloc] initWithView:self.view];
+    self.textFieldManager.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+-(void)textFieldsCollectionManager:(GNTextFieldsCollectionManager *)manager lastTextFieldShouldReturn:(UITextField *)textField;{
+    [[[UIAlertView alloc] initWithTitle:@"Nice!" message:@"Last textfield done..." delegate:nil cancelButtonTitle:@"Great, now dismiss" otherButtonTitles:nil] show];
+    [textField resignFirstResponder];
 }
+
 
 @end
